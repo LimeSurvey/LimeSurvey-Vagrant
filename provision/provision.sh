@@ -156,7 +156,22 @@ echo " "
 echo " "
 echo "Postgresql installed "
 echo "####################"
+echo "+---------------------------+"
+echo "+ install PgAdmin           +"
+echo "+---------------------------+"
+
+
+sudo apt-get install -y  phppgadmin
 sleep 3s;
+sudo rm /etc/phppgadmin/config.inc.php
+
+sleep 5s
+cp /var/www/configuration/pgadmin.config.php /etc/phppgadmin/config.inc.php
+echo "PgAdmin installed "
+echo "####################"
+
+
+
 #setup database
 mysql -u root -p$MysqlRootPass -e "SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
 mysql -u root -p$MysqlRootPass -e "CREATE DATABASE $MysqlDBName;"
@@ -221,6 +236,7 @@ echo " "
 echo " "
 echo " "
 echo "You can connect to Webserver at: http://$myIp "
+echo "You can acces the mysql database management tool (phpmyadmin) at: http://$myIp/phpmyadmin "
 echo " "
 echo " "
 echo " "
