@@ -40,7 +40,7 @@ echo " "
 echo " "
 echo " "
 echo "Packages updated"
-echo "################"
+echo "#################"
 # VBox additions
 echo " "
 echo " "
@@ -84,7 +84,7 @@ echo " "
 echo " "
 echo " "
 echo "PHP $phpVersion extensions & Libraries installed"
-echo "########################################"
+echo "################################################"
 # Nginx
 echo " "
 echo " "
@@ -119,12 +119,22 @@ sleep 3s;
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password '"$MysqlRootPass"
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password '"$MysqlRootPass"
 sudo apt-get -y install mysql-server
-echo " "
-echo " "
-echo " "
-echo " "
 echo "MySql installed "
-echo "###############"
+
+echo "+----------------------+"
+echo "+ install PhpMyAdmin   +"
+echo "+----------------------+"
+sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/internal/skip-preseed boolean true"
+sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect"
+sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean false"
+
+sudo apt-get -y install phpmyadmin
+echo " "
+echo " "
+echo " "
+echo " "
+echo "PhpMyAdmin installed"
+echo "####################"
 sleep 3s;
 # pgsql server
 echo " "
@@ -156,6 +166,7 @@ echo " "
 echo " "
 echo " "
 sleep 3s;
+
 echo "+----------------------+"
 echo "+ Cleaning up          +"
 echo "+----------------------+"
