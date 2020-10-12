@@ -110,7 +110,7 @@ Vagrant.configure("2") do |config|
     #Custom variable for installation
     ip                = "10.0.0.30"
     #php setup
-    phpversion        = "5.6" 
+    phpversion        = "7.4" 
     #mysql setup
     mysqlRootPass     = "password"
     mysqlDBName       = "limesurvey"
